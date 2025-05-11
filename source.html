@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshFruit Market - Premium Fruits Delivered</title>
+    <link rel="icon" type="image/png" href="http://localhost:3001/output_images/maixtgex-1bujylsa/favicon-fruit-market-icon_32x32.png">
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary: #FF9800;
+            --accent: #FF5722;
+            --light: #F5F5F5;
+            --dark: #212121;
+            --text: #333333;
+            --white: #FFFFFF;
+            --shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav ul li a:hover {
+            border-bottom: 2px solid var(--white);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent);
+            color: var(--white);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .hero {
+            background-image: url('http://localhost:3001/output_images/maixtgex-1bujylsa/fresh-fruit-basket-hero_1280x720.png');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #E64A19;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 3rem 0;
+            font-size: 2rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .quantity-btn {
+            background-color: #f0f0f0;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .quantity-input {
+            width: 30px;
+            text-align: center;
+            border: none;
+            background-color: transparent;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-btn {
+            background-color: var(--white);
+            border: 1px solid #ddd;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .testimonials {
+            background-color: var(--primary);
+            padding: 4rem 0;
+            color: var(--white);
+        }
+
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-slide {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+        }
+
+        .testimonial-rating {
+            color: var(--secondary);
+            margin-top: 0.5rem;
+        }
+
+        .newsletter {
+            background-color: var(--secondary);
+            padding: 3rem 0;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 1rem auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+        }
+
+        .newsletter-btn {
+            background-color: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            background-color: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 350px;
+            height: 100%;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            display: none;
+        }
+
+        .cart-modal.open {
+            transform: translateX(0);
+            display: block;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .cart-items {
+            height: calc(100% - 200px);
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 1rem;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-price {
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff4444;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: auto;
+        }
+
+        .cart-total {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            position: absolute;
+            bottom: 70px;
+            width: 100%;
+            background-color: var(--white);
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-total-label {
+            font-weight: 600;
+        }
+
+        .cart-checkout {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cart-checkout:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 1rem;
+            }
+
+            .hero {
+                height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input {
+                border-radius: 30px;
+                margin-bottom: 0.5rem;
+            }
+
+            .newsletter-btn {
+                border-radius: 30px;
+                padding: 0.8rem;
+            }
+
+            .cart-modal {
+                width: 100%;
+            }
+        }
+    </style>
+
+<base target="_self">
+
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="http://localhost:3001/output_images/maixtgex-1bujylsa/fruit-market-logo_150x150.png" alt="FreshFruit Market">
+                FreshFruit Market
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#products">Shop</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li>
+                        <div class="cart-icon" id="cart-icon">
+                            <span class="cart-count" id="cart-count">0</span>
+                            🛒
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Fresh Fruits Delivered to Your Door</h1>
+            <p>Enjoy the finest selection of organic and exotic fruits from around the world</p>
+            <a href="#products" class="btn">Shop Now</a>
+            <a href="#subscriptions" class="btn btn-outline">Subscribe</a>
+        </div>
+    </section>
+
+    <section class="container" id="products">
+        <h2 class="section-title">Our Fresh Selection</h2>
+        
+        <div class="categories">
+            <button class="category-btn active" data-category="all">All Fruits</button>
+            <button class="category-btn" data-category="fresh">Fresh Fruits</button>
+            <button class="category-btn" data-category="dried">Dried Fruits</button>
+            <button class="category-btn" data-category="exotic">Exotic Fruits</button>
+        </div>
+
+        <div class="products" id="products-container">
+            <!-- Product cards will be inserted here by JavaScript -->
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon">🚚</div>
+            <h3 class="feature-title">Fast Delivery</h3>
+            <p>Get your fresh fruits delivered within 24 hours</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌱</div>
+            <h3 class="feature-title">Organic Certified</h3>
+            <p>100% organic and pesticide-free fruits</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">💰</div>
+            <h3 class="feature-title">Best Prices</h3>
+            <p>Competitive prices with quality guarantee</p>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container testimonial-container">
+            <h2 class="section-title" style="color: white;">What Our Customers Say</h2>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial-slide">
+                    <p class="testimonial-text">"The mangoes I received were perfectly ripe and delicious. Will definitely order again!"</p>
+                    <p class="testimonial-author">- Sarah Johnson</p>
+                    <div class="testimonial-rating">★★★★★</div>
+                </div>
+                <div class="testimonial-slide">
+                    <p class="testimonial-text">"Excellent service and the fruits are always fresh. My weekly subscription is the highlight of my week!"</p>
+                    <p class="testimonial-author">- Michael Chen</p>
+                    <div class="testimonial-rating">★★★★★</div>
+                </div>
+                <div class="testimonial-slide">
+                    <p class="testimonial-text">"I've never tasted such amazing strawberries before. Worth every penny!"</p>
+                    <p class="testimonial-author">- Emily Rodriguez</p>
+                    <div class="testimonial-rating">★★★★★</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter" id="subscriptions">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Subscribe to Our Newsletter</h2>
+            <p>Get exclusive offers and seasonal fruit updates</p>
+            
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Your email address" required="">
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-links">
+                <div class="footer-logo">FreshFruit Market</div>
+                <p>Bringing the freshest fruits to your table since 2015</p>
+                <div class="social-links">
+                    <a href="#">f</a>
+                    <a href="#">t</a>
+                    <a href="#">i</a>
+                    <a href="#">p</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#products">Shop</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns &amp; Refunds</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>123 Fruit Avenue</li>
+                    <li>Orchard City, FC 12345</li>
+                    <li>info@freshfruitmarket.com</li>
+                    <li>(555) 123-4567</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 FreshFruit Market. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="overlay" id="overlay"></div>
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-header">
+            <h3 class="cart-title">Your Cart</h3>
+            <button class="close-cart" id="close-cart">×</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be inserted here by JavaScript -->
+        </div>
+        <div class="cart-total">
+            <div class="cart-total-row">
+                <span class="cart-total-label">Subtotal:</span>
+                <span class="cart-total-amount" id="cart-subtotal">$0.00</span>
+            </div>
+            <div class="cart-total-row">
+                <span class="cart-total-label">Shipping:</span>
+                <span class="cart-total-amount">$5.99</span>
+            </div>
+            <div class="cart-total-row">
+                <span class="cart-total-label">Total:</span>
+                <span class="cart-total-amount" id="cart-total">$5.99</span>
+            </div>
+        </div>
+        <button class="cart-checkout">Proceed to Checkout</button>
+    </div>
+
+    <script>
+        // Product data
+        const products = [
+            {
+                id: 1,
+                title: "Organic Strawberries",
+                description: "Sweet and juicy organic strawberries, perfect for desserts or snacks",
+                price: 4.99,
+                category: "fresh",
+                image: "http://localhost:3001/output_images/maixtgex-1bujylsa/organic-strawberries_400x300.png"
+            },
+            {
+                id: 2,
+                title: "Tropical Mango",
+                description: "Ripe and flavorful mangoes imported from the tropics",
+                price: 3.49,
+                category: "fresh",
+                image: "http://localhost:3001/output_images/maixtgex-1bujylsa/tropical-mango_400x300.png"
+            },
+            {
+                id: 3,
+                title: "Dried Apricots",
+                description: "Naturally sweet dried apricots with no added sugar",
+                price: 5.99,
+                category: "dried",
+                image: "http://localhost:3001/output_images/maixtgex-1bujylsa/dried-apricots_400x300.png"
+            },
+            {
+                id: 4,
+                title: "Dragon Fruit",
+                description: "Exotic dragon fruit with vibrant pink skin and sweet white flesh",
+                price 6.99,
+                category: "exotic",
+                image: "http://localhost:3001/output_images/maixtgex-1bujylsa/dragon-fruit_400x300.png"
+            },
+            {
+                id: 5,
+                title: "Organic Blueberries",
+                description: "Plump and antioxidant-rich organic blueberries",
+                price: 4.49,
+                category: "fresh",
+                image: "http://localhost:3001/output_images/maixtgex-1bujylsa/organic-blueberries_400x300.png"
+            },
+            {
+                id: 6,
+                title: "Dried Figs",
+                description: "Premium dried figs packed with fiber and natural sweetness",
+                price: 6.49,
+                category: "dried",
+                image: "http://localhost:3001/output_images/maixtgex-1bujylsa/dried-figs_400x300.png"
+            },
+            {
+                id: 7,
+                title: "Passion Fruit",
+                description: "Tart and aromatic passion fruit with edible seeds",
+                price: 7.99,
+                category: "exotic",
+                image: "http://localhost:3001/output_images/maixtgex-1bujylsa/passion-fruit_400x300.png"
+            },
+            {
+                id: 8,
+                title: "Organic Bananas",
+                description: "Naturally sweet organic bananas, perfect for smoothies",
+                price: 2.99,
+                category: "fresh",
+                image: "http://localhost:3001/output_images/maixtgex-1bujylsa/organic-bananas_400x300.png"
+            }
+        ];
+
+        // Cart functionality
+        let cart = [];
+        const cartModal = document.getElementById('cart-modal');
+        const overlay = document.getElementById('overlay');
+        const cartIcon = document.getElementById('cart-icon');
+        const closeCart = document.getElementById('close-cart');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartCount = document.getElementById('cart-count');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const cartTotal = document.getElementById('cart-total');
+        const productsContainer = document.getElementById('products-container');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+
+        // Display products
+        function displayProducts(filter = 'all') {
+            productsContainer.innerHTML = '';
+            
+            const filteredProducts = filter === 'all' 
+                ? products 
+                : products.filter(product => product.category === filter);
+            
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.title}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <p class="product-price">$${product.price.toFixed(2)}</p>
+                        <div class="product-actions">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn minus" data-id="${product.id}">-</button>
+                                <input type="text" class="quantity-input" value="1" readonly>
+                                <button class="quantity-btn plus" data-id="${product.id}">+</button>
+                            </div>
+                            <button class="btn add-to-cart" data-id="${product.id}">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+                productsContainer.appendChild(productCard);
+            });
+
+            // Add event listeners to new buttons
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', addToCart);
+            });
+
+            document.querySelectorAll('.quantity-btn.minus').forEach(button => {
+                button.addEventListener('', decreaseQuantity);
+            });
+
+            document.querySelectorAll('.quantity-btn.plus').forEach(button => {
+                button.addEventListener('click', increaseQuantity);
+            });
+        }
+
+        // Add to cart function
+        function addToCart(e) {
+            const productId = parseInt(e.target.getAttribute('data-id'));
+            const product = products.find(p => p.id === productId);
+            const quantityInput = e.target.closest('.product-actions').querySelector('.quantity-input');
+            const quantity = parseInt(quantityInput.value);
+            
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    image: product.image,
+                    quantity: quantity
+                });
+            }
+            
+            updateCart();
+            showCart();
+        }
+
+        // Update cart display
+        function updateCart() {
+            cartItemsContainer.innerHTML = '';
+            let subtotal = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <h4 class="cart-item-title">${item.title}</h4>
+                        <p class="cart-item-price">$${item.price.toFixed(2)} × ${item.quantity}</p>
+                        <div class="cart-item-actions">
+                            <button class="remove-item" data-id="${item.id}">Remove</button>
+                        </div>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', removeFromCart);
+            });
+            
+            // Update totals
+            cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+            const total = subtotal + 5.99; // Add shipping
+            cartTotal.textContent = `$${total.toFixed(2)}`;
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+        }
+
+        // Remove from cart
+        function removeFromCart(e) {
+            const productId = parseInt(e.target.getAttribute('data-id'));
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+
+        // Show cart
+        function showCart() {
+            cartModal.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Hide cart
+        function hideCart() {
+            cartModal.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Quantity functions
+        function decreaseQuantity(e) {
+            const input = e.target.nextElementSibling;
+            let value = parseInt(input.value);
+            if (value > 1) {
+                input.value = value - 1;
+            }
+        }
+
+        function increaseQuantity(e) {
+            const input = e.target.previousElementSibling;
+            let value = parseInt(input.value);
+            input.value = value + 1;
+        }
+
+        // Filter products by category
+        function filterProducts(e) {
+            const category = e.target.getAttribute('data-category');
+            
+            categoryButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            e.target.classList.add('active');
+            displayProducts(category);
+        }
+
+        // Event listeners
+        cartIcon.addEventListener('click', showCart);
+        closeCart.addEventListener('click', hideCart);
+        overlay.addEventListener('click', hideCart);
+        
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', filterProducts);
+        });
+
+        // Initialize
+        displayProducts();
+    </script>
+
+              
+          
+                
+          
+              
